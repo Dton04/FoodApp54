@@ -56,16 +56,19 @@ model Like_Res {
 }
 
 model Orders {
-  id        Int       @id @default(autoincrement())
-  userId    Int?
-  foodId    Int?
-  deletedBy Int       @default(0)
-  isDeleted Boolean   @default(false)
-  deletedAt DateTime? @db.Timestamp(0)
-  createdAt DateTime  @default(now()) @db.Timestamp(0)
-  updatedAt DateTime  @default(now()) @db.Timestamp(0)
-  Users     Users?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
-  Foods     Foods?    @relation(fields: [foodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
+  id         Int       @id @default(autoincrement())
+  userId     Int?
+  foodId     Int?
+  deletedBy  Int       @default(0)
+  isDeleted  Boolean   @default(false)
+  deletedAt  DateTime? @db.Timestamp(0)
+  createdAt  DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime  @default(now()) @db.Timestamp(0)
+  amount     Int?
+  code       String?   @db.VarChar(255)
+  arr_sub_id String?   @db.VarChar(255)
+  Users      Users?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
+  Foods      Foods?    @relation(fields: [foodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
 
   @@index([foodId], map: "foodId")
   @@index([userId], map: "userId")

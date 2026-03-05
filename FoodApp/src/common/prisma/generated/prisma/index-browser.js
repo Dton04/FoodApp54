@@ -165,7 +165,10 @@ exports.Prisma.OrdersScalarFieldEnum = {
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  amount: 'amount',
+  code: 'code',
+  arr_sub_id: 'arr_sub_id'
 };
 
 exports.Prisma.Rate_ResScalarFieldEnum = {
@@ -239,6 +242,11 @@ exports.Prisma.FoodsOrderByRelevanceFieldEnum = {
   name: 'name',
   image: 'image',
   description: 'description'
+};
+
+exports.Prisma.OrdersOrderByRelevanceFieldEnum = {
+  code: 'code',
+  arr_sub_id: 'arr_sub_id'
 };
 
 exports.Prisma.RestaurantOrderByRelevanceFieldEnum = {

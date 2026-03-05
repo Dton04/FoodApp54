@@ -4820,6 +4820,7 @@ export namespace Prisma {
     userId: number | null
     foodId: number | null
     deletedBy: number | null
+    amount: number | null
   }
 
   export type OrdersSumAggregateOutputType = {
@@ -4827,6 +4828,7 @@ export namespace Prisma {
     userId: number | null
     foodId: number | null
     deletedBy: number | null
+    amount: number | null
   }
 
   export type OrdersMinAggregateOutputType = {
@@ -4838,6 +4840,9 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    amount: number | null
+    code: string | null
+    arr_sub_id: string | null
   }
 
   export type OrdersMaxAggregateOutputType = {
@@ -4849,6 +4854,9 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    amount: number | null
+    code: string | null
+    arr_sub_id: string | null
   }
 
   export type OrdersCountAggregateOutputType = {
@@ -4860,6 +4868,9 @@ export namespace Prisma {
     deletedAt: number
     createdAt: number
     updatedAt: number
+    amount: number
+    code: number
+    arr_sub_id: number
     _all: number
   }
 
@@ -4869,6 +4880,7 @@ export namespace Prisma {
     userId?: true
     foodId?: true
     deletedBy?: true
+    amount?: true
   }
 
   export type OrdersSumAggregateInputType = {
@@ -4876,6 +4888,7 @@ export namespace Prisma {
     userId?: true
     foodId?: true
     deletedBy?: true
+    amount?: true
   }
 
   export type OrdersMinAggregateInputType = {
@@ -4887,6 +4900,9 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    amount?: true
+    code?: true
+    arr_sub_id?: true
   }
 
   export type OrdersMaxAggregateInputType = {
@@ -4898,6 +4914,9 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    amount?: true
+    code?: true
+    arr_sub_id?: true
   }
 
   export type OrdersCountAggregateInputType = {
@@ -4909,6 +4928,9 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    amount?: true
+    code?: true
+    arr_sub_id?: true
     _all?: true
   }
 
@@ -5007,6 +5029,9 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    amount: number | null
+    code: string | null
+    arr_sub_id: string | null
     _count: OrdersCountAggregateOutputType | null
     _avg: OrdersAvgAggregateOutputType | null
     _sum: OrdersSumAggregateOutputType | null
@@ -5037,6 +5062,9 @@ export namespace Prisma {
     deletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    amount?: boolean
+    code?: boolean
+    arr_sub_id?: boolean
     Users?: boolean | Orders$UsersArgs<ExtArgs>
     Foods?: boolean | Orders$FoodsArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
@@ -5052,9 +5080,12 @@ export namespace Prisma {
     deletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    amount?: boolean
+    code?: boolean
+    arr_sub_id?: boolean
   }
 
-  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "foodId" | "deletedBy" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["orders"]>
+  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "foodId" | "deletedBy" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt" | "amount" | "code" | "arr_sub_id", ExtArgs["result"]["orders"]>
   export type OrdersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Users?: boolean | Orders$UsersArgs<ExtArgs>
     Foods?: boolean | Orders$FoodsArgs<ExtArgs>
@@ -5075,6 +5106,9 @@ export namespace Prisma {
       deletedAt: Date | null
       createdAt: Date
       updatedAt: Date
+      amount: number | null
+      code: string | null
+      arr_sub_id: string | null
     }, ExtArgs["result"]["orders"]>
     composites: {}
   }
@@ -5454,6 +5488,9 @@ export namespace Prisma {
     readonly deletedAt: FieldRef<"Orders", 'DateTime'>
     readonly createdAt: FieldRef<"Orders", 'DateTime'>
     readonly updatedAt: FieldRef<"Orders", 'DateTime'>
+    readonly amount: FieldRef<"Orders", 'Int'>
+    readonly code: FieldRef<"Orders", 'String'>
+    readonly arr_sub_id: FieldRef<"Orders", 'String'>
   }
     
 
@@ -10241,7 +10278,10 @@ export namespace Prisma {
     isDeleted: 'isDeleted',
     deletedAt: 'deletedAt',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    amount: 'amount',
+    code: 'code',
+    arr_sub_id: 'arr_sub_id'
   };
 
   export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
@@ -10342,6 +10382,14 @@ export namespace Prisma {
   };
 
   export type FoodsOrderByRelevanceFieldEnum = (typeof FoodsOrderByRelevanceFieldEnum)[keyof typeof FoodsOrderByRelevanceFieldEnum]
+
+
+  export const OrdersOrderByRelevanceFieldEnum: {
+    code: 'code',
+    arr_sub_id: 'arr_sub_id'
+  };
+
+  export type OrdersOrderByRelevanceFieldEnum = (typeof OrdersOrderByRelevanceFieldEnum)[keyof typeof OrdersOrderByRelevanceFieldEnum]
 
 
   export const RestaurantOrderByRelevanceFieldEnum: {
@@ -10674,6 +10722,9 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Orders"> | Date | string | null
     createdAt?: DateTimeFilter<"Orders"> | Date | string
     updatedAt?: DateTimeFilter<"Orders"> | Date | string
+    amount?: IntNullableFilter<"Orders"> | number | null
+    code?: StringNullableFilter<"Orders"> | string | null
+    arr_sub_id?: StringNullableFilter<"Orders"> | string | null
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     Foods?: XOR<FoodsNullableScalarRelationFilter, FoodsWhereInput> | null
   }
@@ -10687,8 +10738,12 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    amount?: SortOrderInput | SortOrder
+    code?: SortOrderInput | SortOrder
+    arr_sub_id?: SortOrderInput | SortOrder
     Users?: UsersOrderByWithRelationInput
     Foods?: FoodsOrderByWithRelationInput
+    _relevance?: OrdersOrderByRelevanceInput
   }
 
   export type OrdersWhereUniqueInput = Prisma.AtLeast<{
@@ -10703,6 +10758,9 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Orders"> | Date | string | null
     createdAt?: DateTimeFilter<"Orders"> | Date | string
     updatedAt?: DateTimeFilter<"Orders"> | Date | string
+    amount?: IntNullableFilter<"Orders"> | number | null
+    code?: StringNullableFilter<"Orders"> | string | null
+    arr_sub_id?: StringNullableFilter<"Orders"> | string | null
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     Foods?: XOR<FoodsNullableScalarRelationFilter, FoodsWhereInput> | null
   }, "id">
@@ -10716,6 +10774,9 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    amount?: SortOrderInput | SortOrder
+    code?: SortOrderInput | SortOrder
+    arr_sub_id?: SortOrderInput | SortOrder
     _count?: OrdersCountOrderByAggregateInput
     _avg?: OrdersAvgOrderByAggregateInput
     _max?: OrdersMaxOrderByAggregateInput
@@ -10735,6 +10796,9 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Orders"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
+    amount?: IntNullableWithAggregatesFilter<"Orders"> | number | null
+    code?: StringNullableWithAggregatesFilter<"Orders"> | string | null
+    arr_sub_id?: StringNullableWithAggregatesFilter<"Orders"> | string | null
   }
 
   export type Rate_ResWhereInput = {
@@ -11350,6 +11414,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
     Users?: UsersCreateNestedOneWithoutOrdersInput
     Foods?: FoodsCreateNestedOneWithoutOrdersInput
   }
@@ -11363,6 +11430,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type OrdersUpdateInput = {
@@ -11371,6 +11441,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
     Users?: UsersUpdateOneWithoutOrdersNestedInput
     Foods?: FoodsUpdateOneWithoutOrdersNestedInput
   }
@@ -11384,6 +11457,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersCreateManyInput = {
@@ -11395,6 +11471,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type OrdersUpdateManyMutationInput = {
@@ -11403,6 +11482,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateManyInput = {
@@ -11414,6 +11496,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type Rate_ResCreateInput = {
@@ -12198,6 +12283,12 @@ export namespace Prisma {
     isNot?: FoodsWhereInput | null
   }
 
+  export type OrdersOrderByRelevanceInput = {
+    fields: OrdersOrderByRelevanceFieldEnum | OrdersOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type OrdersCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -12207,6 +12298,9 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    amount?: SortOrder
+    code?: SortOrder
+    arr_sub_id?: SortOrder
   }
 
   export type OrdersAvgOrderByAggregateInput = {
@@ -12214,6 +12308,7 @@ export namespace Prisma {
     userId?: SortOrder
     foodId?: SortOrder
     deletedBy?: SortOrder
+    amount?: SortOrder
   }
 
   export type OrdersMaxOrderByAggregateInput = {
@@ -12225,6 +12320,9 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    amount?: SortOrder
+    code?: SortOrder
+    arr_sub_id?: SortOrder
   }
 
   export type OrdersMinOrderByAggregateInput = {
@@ -12236,6 +12334,9 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    amount?: SortOrder
+    code?: SortOrder
+    arr_sub_id?: SortOrder
   }
 
   export type OrdersSumOrderByAggregateInput = {
@@ -12243,6 +12344,7 @@ export namespace Prisma {
     userId?: SortOrder
     foodId?: SortOrder
     deletedBy?: SortOrder
+    amount?: SortOrder
   }
 
   export type Rate_ResCountOrderByAggregateInput = {
@@ -13375,6 +13477,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
     Users?: UsersCreateNestedOneWithoutOrdersInput
   }
 
@@ -13386,6 +13491,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type OrdersCreateOrConnectWithoutFoodsInput = {
@@ -13487,6 +13595,9 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Orders"> | Date | string | null
     createdAt?: DateTimeFilter<"Orders"> | Date | string
     updatedAt?: DateTimeFilter<"Orders"> | Date | string
+    amount?: IntNullableFilter<"Orders"> | number | null
+    code?: StringNullableFilter<"Orders"> | string | null
+    arr_sub_id?: StringNullableFilter<"Orders"> | string | null
   }
 
   export type Sub_FoodUpsertWithWhereUniqueWithoutFoodsInput = {
@@ -14227,6 +14338,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
     Foods?: FoodsCreateNestedOneWithoutOrdersInput
   }
 
@@ -14238,6 +14352,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type OrdersCreateOrConnectWithoutUsersInput = {
@@ -14394,6 +14511,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type Sub_FoodCreateManyFoodsInput = {
@@ -14413,6 +14533,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
     Users?: UsersUpdateOneWithoutOrdersNestedInput
   }
 
@@ -14424,6 +14547,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateManyWithoutFoodsInput = {
@@ -14434,6 +14560,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type Sub_FoodUpdateWithoutFoodsInput = {
@@ -14582,6 +14711,9 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    amount?: number | null
+    code?: string | null
+    arr_sub_id?: string | null
   }
 
   export type Rate_ResCreateManyUsersInput = {
@@ -14637,6 +14769,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
     Foods?: FoodsUpdateOneWithoutOrdersNestedInput
   }
 
@@ -14648,6 +14783,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateManyWithoutUsersInput = {
@@ -14658,6 +14796,9 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: NullableIntFieldUpdateOperationsInput | number | null
+    code?: NullableStringFieldUpdateOperationsInput | string | null
+    arr_sub_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type Rate_ResUpdateWithoutUsersInput = {
