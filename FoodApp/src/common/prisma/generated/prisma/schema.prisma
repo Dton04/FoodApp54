@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/common/prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Food_Type {
+  id        Int       @id @default(autoincrement())
+  name      String?   @db.VarChar(255)
+  deletedBy Int       @default(0)
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime? @db.Timestamp(0)
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt DateTime  @default(now()) @db.Timestamp(0)
+  Foods     Foods[]
+}
+
+model Foods {
+  id          Int        @id @default(autoincrement())
+  name        String?    @db.VarChar(255)
+  image       String?    @db.Text
+  price       Float?     @db.Float
+  description String?    @default("Chưa có thông tin") @db.VarChar(255)
+  type_id     Int?
+  deletedBy   Int        @default(0)
+  isDeleted   Boolean    @default(false)
+  deletedAt   DateTime?  @db.Timestamp(0)
+  createdAt   DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime   @default(now()) @db.Timestamp(0)
+  Food_Type   Food_Type? @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Foods_ibfk_1")
+  Orders      Orders[]
+  Sub_Food    Sub_Food[]
+
+  @@index([type_id], map: "type_id")
+}
+
+model Like_Res {
+  id         Int         @id @default(autoincrement())
+  date_like  DateTime?   @db.DateTime(0)
+  user_id    Int?
+  res_id     Int?
+  deletedBy  Int         @default(0)
+  isDeleted  Boolean     @default(false)
+  deletedAt  DateTime?   @db.Timestamp(0)
+  createdAt  DateTime    @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime    @default(now()) @db.Timestamp(0)
+  isLike     Boolean?    @default(true)
+  Users      Users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Like_Res_ibfk_1")
+  Restaurant Restaurant? @relation(fields: [res_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Like_Res_ibfk_2")
+
+  @@index([res_id], map: "res_id")
+  @@index([user_id], map: "user_id")
+}
+
+model Orders {
+  id        Int       @id @default(autoincrement())
+  userId    Int?
+  foodId    Int?
+  deletedBy Int       @default(0)
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime? @db.Timestamp(0)
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt DateTime  @default(now()) @db.Timestamp(0)
+  Users     Users?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
+  Foods     Foods?    @relation(fields: [foodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
+
+  @@index([foodId], map: "foodId")
+  @@index([userId], map: "userId")
+}
+
+model Rate_Res {
+  id         Int         @id @default(autoincrement())
+  amount     Int?
+  date_rate  DateTime?   @db.DateTime(0)
+  user_id    Int?
+  res_id     Int?
+  deletedBy  Int         @default(0)
+  isDeleted  Boolean     @default(false)
+  deletedAt  DateTime?   @db.Timestamp(0)
+  createdAt  DateTime    @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime    @default(now()) @db.Timestamp(0)
+  Users      Users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Rate_Res_ibfk_1")
+  Restaurant Restaurant? @relation(fields: [res_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Rate_Res_ibfk_2")
+
+  @@index([res_id], map: "res_id")
+  @@index([user_id], map: "user_id")
+}
+
+model Restaurant {
+  id          Int        @id @default(autoincrement())
+  name        String?    @db.VarChar(255)
+  image       String?    @db.VarChar(500)
+  description String?    @db.VarChar(255)
+  deletedBy   Int        @default(0)
+  isDeleted   Boolean    @default(false)
+  deletedAt   DateTime?  @db.Timestamp(0)
+  createdAt   DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime   @default(now()) @db.Timestamp(0)
+  Like_Res    Like_Res[]
+  Rate_Res    Rate_Res[]
+}
+
+model Sub_Food {
+  id        Int       @id @default(autoincrement())
+  name      String?   @db.VarChar(255)
+  price     Float?    @db.Float
+  food_id   Int?
+  deletedBy Int       @default(0)
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime? @db.Timestamp(0)
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt DateTime  @default(now()) @db.Timestamp(0)
+  Foods     Foods?    @relation(fields: [food_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Sub_Food_ibfk_1")
+
+  @@index([food_id], map: "food_id")
+}
+
+model Users {
+  id         Int        @id @default(autoincrement())
+  email      String     @unique(map: "email") @db.VarChar(255)
+  fullName   String?    @db.VarChar(255)
+  password   String?    @db.VarChar(255)
+  avatar     String?    @db.Text
+  age        Int?
+  totpSecret String?    @db.VarChar(255)
+  googleId   String?    @db.VarChar(255)
+  deletedBy  Int        @default(0)
+  isDeleted  Boolean    @default(false)
+  deletedAt  DateTime?  @db.Timestamp(0)
+  createdAt  DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime   @default(now()) @db.Timestamp(0)
+  Like_Res   Like_Res[]
+  Orders     Orders[]
+  Rate_Res   Rate_Res[]
+}
