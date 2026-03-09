@@ -13,26 +13,16 @@ const rateController = {
          res.status(500).json(responseError("Lỗi hệ thống", error))
       }
    },
-   async getRateByRestaurant(req, res) {
+   async getRates(req,res) {
       try {
-         const { res_id } = req.params;
-         const rate = await rateService.getRateByRestaurant(res_id);
-         const response = responseSuccess("Lấy đánh giá thành công", rate)
+         const {user_id, res_id} = req.body;
+         const rates = await rateService.getRates({user_id, res_id})
+         const response = responseSuccess("Lấy đánh giá thành công", rates)
          res.status(200).json(response)
       } catch (error) {
          console.log(error)
          res.status(500).json(responseError("Lỗi hệ thống", error))
-      }
-   },
-   async getRateByUser(req, res) {
-      try {
-         const { user_id } = req.params;
-         const rate = await rateService.getRateByUser(user_id);
-         const response = responseSuccess("Lấy đánh giá thành công", rate)
-         res.status(200).json(response)
-      } catch (error) {
-         console.log(error)
-         res.status(500).json(responseError("Lỗi hệ thống", error))
+         
       }
    },
    async deleteRate(req, res) {

@@ -12,25 +12,17 @@ const rateService = {
       })
       return rate
    },
-   async getRateByRestaurant(res_id) {
-      const rate = await prisma.rate_Res.findMany({
+   async getRates(data) {
+      const rates = await prisma.rate_Res.findMany({
          where: {
-            res_id: Number(res_id),
-            isDeleted: false
-         }
-
-      })
-      return rate
-   },
-   async getRateByUser(user_id) {
-      const rate = await prisma.rate_Res.findMany({
-         where: {
-            user_id: Number(user_id),
+            user_id: data.user_id,
+            res_id: data.res_id,
             isDeleted: false
          }
       })
-      return rate
-   },
+      return rates
+   }
+   ,
    async deleteRate(id) {
       const rate = await prisma.rate_Res.update({
          where: {
